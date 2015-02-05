@@ -1,5 +1,5 @@
 all : annotation.cpp
-	g++ annotation.cpp -o annotation
+	g++ -Wall -g annotation.cpp -o annotation
 	
 clean:
 	rm -rf annotaion
