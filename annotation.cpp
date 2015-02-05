@@ -78,6 +78,7 @@ void readwords(){
 }
 
 void preprocess_comb(){
+  printf("debug");
   que=mode?adj_size:noun_size;
   ans=mode?noun_size:adj_size;
   que_ans=que*ans*(ans-1)/2;
@@ -111,7 +112,7 @@ void swap(int i,int j){
 }
 void shuffle(){
   srand((unsigned)time(NULL));
-  for(int i=que_ans-1;i>=0;i--){
+  for(int i=que_ans-1;i>0;i--){
     swap(i,rand_gen(i));
   }
 }
@@ -129,14 +130,18 @@ void print_to_annotator(int i,FILE*fo){
     strcpy(anss1,noun_words[aj].c_str());
     strcpy(anss1,noun_words[ajj].c_str());
   }  
-  printf("\nwhich word do you think is more related with \'%s\':\n",ques);
+  printf("\n(%d) which word do you think is more related with \'%s\':\n",i,ques);
   printf("1. %s\n",anss1);
   printf("2. %s\n",anss2);
   printf("3. both 1 and 2\n");
   printf("4. none of them\n\n");
-  int answer;
-  scanf("  your answer would be:%d",&answer);
-  fprintf(fo,"%s %s %s %d\n",ques,anss1,anss2,answer);
+  char answer[20]={"5"},buffer=0;
+ // if((buffer=getchar())!=0&&buffer!='\n')
+   // while((buffer=getchar())!='\n'&&buffer!=EOF){};
+  do{
+    printf("  your answer would be:");scanf("%s",answer);printf("\n");
+  }while(strcmp(answer,"1")&&strcmp(answer,"2")&&strcmp(answer,"3")&&strcmp(answer,"4"));
+  fprintf(fo,"%s %s %s %s\n",ques,anss1,anss2,answer);
 }
 int main(int argc,char **argv){
   if(argc==1){
@@ -171,8 +176,6 @@ int main(int argc,char **argv){
   preprocess_comb();
   shuffle();
   printf("************************************ANOTATION STARTS*************************\n");
-  printf("PRESS ANY KEY TO START\n");
-  char wait; scanf("%c",&wait);
   FILE* fo=fopen(out_file,"w");
   for(int i=0;i<que_ans_comb_maxsize;i++){
     print_to_annotator(i,fo);
