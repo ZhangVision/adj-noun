@@ -180,5 +180,6 @@ int main(int argc,char **argv){
   for(int i=0;i<que_ans_comb_maxsize;i++){
     print_to_annotator(i,fo);
   }
+  free(que_ans_comb);
   fclose(fo);
 }
