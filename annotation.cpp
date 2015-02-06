@@ -175,7 +175,7 @@ int main(int argc,char **argv){
   if(combination_max_size<=0)exit(1);
   preprocess_comb();
   shuffle();
-  printf("************************************ANOTATION STARTS*************************\n");
+  printf("************************************ANNOTATION STARTS*************************\n");
   FILE* fo=fopen(out_file,"w");
   for(int i=0;i<que_ans_comb_maxsize;i++){
     print_to_annotator(i,fo);
