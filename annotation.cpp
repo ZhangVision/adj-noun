@@ -128,7 +128,7 @@ void print_to_annotator(int i,FILE*fo){
   }else{
     strcpy(ques,adj_words[qi].c_str());
     strcpy(anss1,noun_words[aj].c_str());
-    strcpy(anss1,noun_words[ajj].c_str());
+    strcpy(anss2,noun_words[ajj].c_str());
   }  
   printf("\n(%d) which word do you think is more related with \'%s\':\n",i,ques);
   printf("1. %s\n",anss1);
